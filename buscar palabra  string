@@ -1,0 +1,12 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    string frase="Fundamentos de programacion Vinicio Fernandez ";
+    string nombre ;
+    nombre = frase.substr (28,7 ); // 28 donde me encuetro 7 las palabras que tengo vinicio 7 letras
+    cout  << "Tu nombre es :" << nombre<<endl;
+    return 0;
+}
