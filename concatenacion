@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string frase;
+    cout << "Ingrese frase " << endl;
+    getline(cin,frase);
+    cout << "La frase es :"<<frase<<endl;
+
+    // ASIGNACION
+
+    string texto;
+    texto=frase;
+    cout << texto<<endl;
+
+    // LOGITUD DE UNA FRASE
+
+    int logitud ; // DE CLARO UN VALO
+    logitud =frase.length();  // LENGTH FUNCION PROPIA DEL STRIG SACA LOS VALORES DE LA FRASE
+    cout << "LA LONGITUD DE LA FRASE ES : " <<  logitud<< endl;
+
+    // CONCATENACION
+    string frase2;
+    cout <<" NOMBRE :"<<endl;
+    cin >> frase2;
+    string frasetotal =frase +frase2;
+    cout << "LA LONGITUD TOTAL ES :" << frasetotal.length()<<endl;
+
+    return 0;
+}
