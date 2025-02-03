@@ -1,0 +1,18 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string valor1,valor2;
+    cout << "Ingrese el valor 1 string " << endl;
+    cin >>valor1;
+    cout << "Ingrese el valor 1 string " << endl;
+    cin >>valor2;
+
+     int suma = stoi(valor1)+ stoi (valor2);
+     cout << "La suma es :"<<suma<<endl;
+     float division = stof (valor1)/stoi(valor2);
+     cout <<"La respuesta es :"<<division<<endl;
+    return 0;
+}
