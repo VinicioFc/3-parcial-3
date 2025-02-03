@@ -1,0 +1,81 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    string frase;
+    cout << "Ingrese frase " << endl;
+    getline(cin,frase);
+    cout << "La frase es :"<<frase<<endl;
+
+    // ASIGNACION
+
+    string texto;
+    texto=frase;
+    cout << texto<<endl;
+
+    // LOGITUD DE UNA FRASE
+
+    int logitud ; // DE CLARO UN VALO
+    logitud =frase.length();  // LENGTH FUNCION PROPIA DEL STRIG SACA LOS VALORES DE LA FRASE
+    cout << "LA LONGITUD DE LA FRASE ES : " <<  logitud<< endl;
+
+    // CONCATENACION
+
+    string frase2;
+    cout <<"NOMBRE :"<<endl;
+    cin >> frase2;
+    string frasetotal =frase +frase2;
+    cout << "LA LONGITUD TOTAL ES :" << frasetotal.length()<<endl;
+    string nombre = " VINICIO FERNANDEZ ";
+    frasetotal = frase+frase2+nombre;
+    cout << frasetotal<<endl<<endl;
+
+    string n1,n2,a1,a2;
+    cout <<"PRIMER NOMBRE"<<endl;
+    cin >>n1;
+    cout <<"SEGUNDO NOMBRE"<<endl;
+    cin >>n2;
+    cout <<"PRIMER APELLIDO"<<endl;
+    cin >>a1;
+    cout <<"SEGUNDO APELLIDO"<<endl;
+    cin >>a2;
+
+    string nombreAp =n1+" "+n2+" "+a1+" "+a2;
+    cout <<nombreAp<<endl;
+
+    // CONVERSION A MAYUSCULAS
+
+    string nombreMayusculas = nombreAp;
+    transform(nombreMayusculas.begin(), nombreMayusculas .end(),nombreMayusculas.begin(),::toupper);
+    cout <<"NOMBRE Y APELLIDOS EN MAYUSCULA : " <<nombreMayusculas<<endl;
+
+
+    // REVERSA
+
+    reverse (nombreMayusculas.begin(),nombreMayusculas.end());
+    cout << "NOMBRE Y APELLIDOS EN REVERSA : "<<nombreMayusculas<<endl;
+
+    // EXTRAER
+
+    string apellido;
+    apellido=nombreAp.substr(25,5); // desde donde va a tomar y cuantas letras contine
+    cout <<" MI APELLIDO ES : " << apellido<<endl;
+
+    // BUSQUEDA
+    string busqueda;
+    cout <<"LA PALABRA A BUSCAR " <<endl;
+    cin >> busqueda;
+    if (nombreAp.find(busqueda) != string :: npos )
+    {
+       cout << " SE ENCONTRO A :"<< busqueda<<endl;
+    }
+    else
+    {
+        cout << " NO ENCONTRO A :"<< busqueda<<endl;
+    }
+return 0;
+}
+
