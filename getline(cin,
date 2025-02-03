@@ -1,0 +1,12 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string frase;
+    cout << "Ingrese frase " << endl;
+    getline(cin,frase);
+    cout << "La frase es :"<<frase<<endl;
+    return 0;
+}
