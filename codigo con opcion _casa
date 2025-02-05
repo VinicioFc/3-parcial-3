@@ -1,0 +1,126 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+string frase[5];
+int opcion;
+
+int main() {
+    do {
+        cout << " ***** MENU ***** " << endl;
+        cout << " 1. INGRESE LAS FRASES " << endl;
+        cout << " 2. ASIGNA LAS FRASES " << endl;
+        cout << " 3. LONGITUD DE LAS FRASES " << endl;
+        cout << " 4. CONCATENACION " << endl;
+        cout << " 5. CONVERSION A MAYUSCULAS " << endl;
+        cout << " 6. REVERSA " << endl;
+        cout << " 7. EXTRACCION " << endl;
+        cout << " 8. BUSQUEDA " << endl;
+        cout << " 9. SALIR " << endl;
+        cout << " **************** " << endl;
+        cout << " SELECCIONA LA OPCION DESEADA: ";
+        cin >> opcion;
+        cin.ignore();
+
+        switch (opcion) {
+            case 1:
+                cout << " INGRESE LAS FRASES " << endl;
+                for (int i = 0; i < 5; i++) {
+                    cout << " INGRESE LA FRASE " << i + 1 << ": ";
+                    getline(cin, frase[i]);
+                }
+                break;
+
+            case 2:
+                cout << " ASIGNACION DE FRASES " << endl;
+                for (int i = 0; i < 5; i++) {
+                    cout << " FRASE ASIGNADA " << i + 1 << ": " << frase[i] << endl;
+                }
+                break;
+
+            case 3:
+                cout << " LONGITUD DE CADA FRASE " << endl;
+                for (int i = 0; i < 5; i++) {
+                    cout << " FRASE " << i + 1 << " TIENE " << frase[i].length() << " CARACTERES" << endl;
+                }
+                break;
+
+            case 4: {
+                cout << " CONCATENACION " << endl;
+                string concatenada = frase[0] + " " + frase[1] + " " + frase[2] + " " + frase[3] + " " + frase[4];
+                cout << " FRASES CONCATENADAS: " << concatenada << endl;
+                cout << " LONGITUD DE LA FRASE CONCATENADA: " << concatenada.length() << endl;
+                break;
+            }
+
+            case 5: {
+                cout << " CONVERSION A MAYUSCULAS " << endl;
+                string mayusculas;
+                for (int i = 0; i < 5; i++) {
+                    mayusculas = frase[i];
+                    transform(mayusculas.begin(), mayusculas.end(), mayusculas.begin(), ::toupper);
+                    cout << " FRASE " << i + 1 << " EN MAYUSCULAS: " << mayusculas << endl;
+                }
+                break;
+            }
+
+            case 6: {
+                cout << " REVERSA " << endl;
+                string reversa;
+                for (int i = 0; i < 5; i++) {
+                    reversa = frase[i];
+                    reverse(reversa.begin(), reversa.end());
+                    cout << " FRASE " << i + 1 << " EN REVERSA: " << reversa << endl;
+                }
+                break;
+            }
+
+            case 7: {
+                cout << " EXTRACCION " << endl;
+                int pos, len;
+                cout << " INGRESE LA POSICION INICIAL: ";
+                cin >> pos;
+                cout << " INGRESE LA LONGITUD DE LA EXTRACCION: ";
+                cin >> len;
+                cin.ignore();
+                if (pos >= 0 && len > 0) {
+                    for (int i = 0; i < 5; i++) {
+                        if (pos < frase[i].length()) {
+                            cout << " EXTRACCION DE FRASE " << i + 1 << ": " << frase[i].substr(pos, len) << endl;
+                        } else {
+                            cout << " POSICION FUERA DE RANGO PARA FRASE " << i + 1 << endl;
+                        }
+                    }
+                }
+                break;
+            }
+
+            case 8: {
+                cout << " BUSQUEDA " << endl;
+                string palabra;
+                cout << " INGRESE LA PALABRA A BUSCAR: ";
+                getline(cin, palabra);
+                for (int i = 0; i < 5; i++) {
+                    if (frase[i].find(palabra) != string::npos) {
+                        cout << " SE ENCONTRO '" << palabra << "' EN LA FRASE " << i + 1 << endl;
+                    } else {
+                        cout << " NO SE ENCONTRO '" << palabra << "' EN LA FRASE " << i + 1 << endl;
+                    }
+                }
+                break;
+            }
+
+            case 9:
+                cout << " SALIENDO DEL PROGRAMA... " << endl;
+                break;
+
+            default:
+                cout << " OPCION INVALIDA, INTENTE NUEVAMENTE " << endl;
+                break;
+        }
+    } while (opcion != 9);
+
+    return 0;
+}
+
