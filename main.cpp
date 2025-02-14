@@ -1,30 +1,51 @@
 #include <iostream>
+#include <vector>
+#include <cstdlib>
 using namespace std;
 
-struct nombre {
-    string nombre;
-    int edad;
-
-
-    void mostrarDatos() {
-        cout << "NOMBRE : " << nombre << " EDAD : " << edad << " AÑOS" << endl;
-    }
+struct carro{
+string modelo,marca;
+int anio;
+float precio;
+char color;
 };
+int main()
+{
+    vector<carro> carros;
+    int ncarros;
+    cout<<"Ingrese el numero de carros"<<endl;
+    cin>>ncarros;
 
-int main() {
+    for (int i=0;i<ncarros;i++){
+            carro autos;
 
-    // Declarar un objeto de tipo 'nombre'
+        cout<<"Ingrese el modelo"<<"["<<i<<"]"<<endl;
+        cin>>autos.modelo;
+        cout<<"Ingrese el marca"<<"["<<i<<"]"<<endl;
+        cin>>autos.marca;
+        cout<<"Ingrese el anio"<<"["<<i<<"]"<<endl;
+        cin>>autos.anio;
+        cout<<"Ingrese el precio"<<"["<<i<<"]"<<endl;
+        cin>>autos.precio;
+        cout<<"Ingrese el color"<<"["<<i<<"]"<<endl;
+        cin>>autos.color;
+        carros.push_back(autos);
+        system("cls");
 
-    nombre P1;
+    }
+    for (int i=0;i<carros.size();i++){
 
-    // Asignar valores al objeto
-
-    P1.nombre = "Vinicio";
-    P1.edad = 21;
-
-    // Mostrar los datos
-
-    P1.mostrarDatos();
-
+        cout<<"| MODELO: "<<carros[i].modelo<<" |"<<endl;
+        cout<<"| MARCA: "<<carros[i].marca<<" |"<<endl;
+        cout<<"| ANIO: "<<carros[i].anio<<" |"<<endl;
+        cout<<"| PRECIO: "<<carros[i].precio<<" |"<<endl;
+        cout<<"| COLOR: "<<carros[i].color<<" |"<<endl;
+        cout<<"| SIGUIENTE CARRO| "<<endl;
+        cout<<"        |||"<<endl;
+        cout<<"        |||"<<endl;
+        cout<<"        |||"<<endl;
+        cout<<"        |||"<<endl;;
+        cout<<"        ||"<<endl;
+    }
     return 0;
 }
