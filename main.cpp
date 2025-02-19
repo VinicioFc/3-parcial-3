@@ -1,51 +1,88 @@
 #include <iostream>
-#include <vector>
-#include <cstdlib>
+#include <string>
+
 using namespace std;
 
-struct carro{
-string modelo,marca;
-int anio;
-float precio;
-char color;
+class Motor {
+private:
+int potencia;
+int velocidad;
+string estado;
+const int MAX_VELOCIDAD = 5000;
+
+public:
+Motor(int p) : potencia(p), velocidad(0), estado("Apagado") {}
+
+void encender() {
+    estado = "Encendido";
+    cout << "Motor encendido " <<endl;
+}
+
+void apagar() {
+    estado = "Apagado";
+    velocidad = 0;
+    cout << "Motor apagado " <<endl;
+}
+
+void ajustarVelocidad(int rpm)
+{
+    if (estado == "Encendido")
+    {
+    if (rpm > MAX_VELOCIDAD)
+        {
+            velocidad = MAX_VELOCIDAD;
+            cout << "Velocidad limitada a " << MAX_VELOCIDAD << " rpm " <<endl;
+        }
+    else
+        {
+            velocidad = rpm;
+            cout << "Velocidad ajustada a " << velocidad << " rpm  " <<endl;
+        }
+    }
+    else {
+        cout << "No se puede ajustar la velocidad. El motor está apagado " <<endl;
+    }
+}
+
+void mostrarEstado()
+{
+    cout << "Estado: " << estado << ", Velocidad: " << velocidad << " rpm " <<endl;
+
+    cout << " --------------------------------------------------------- " <<endl;
+}
+
 };
+
 int main()
 {
-    vector<carro> carros;
-    int ncarros;
-    cout<<"Ingrese el numero de carros"<<endl;
-    cin>>ncarros;
+int potencia, rpm;
+cout << "Ingrese la potencia del motor:  " <<endl;
+cin >> potencia;
 
-    for (int i=0;i<ncarros;i++){
-            carro autos;
+Motor motor(potencia);
+motor.mostrarEstado();
 
-        cout<<"Ingrese el modelo"<<"["<<i<<"]"<<endl;
-        cin>>autos.modelo;
-        cout<<"Ingrese el marca"<<"["<<i<<"]"<<endl;
-        cin>>autos.marca;
-        cout<<"Ingrese el anio"<<"["<<i<<"]"<<endl;
-        cin>>autos.anio;
-        cout<<"Ingrese el precio"<<"["<<i<<"]"<<endl;
-        cin>>autos.precio;
-        cout<<"Ingrese el color"<<"["<<i<<"]"<<endl;
-        cin>>autos.color;
-        carros.push_back(autos);
-        system("cls");
+cout << "¿Desea encender el motor? (s/n): " <<endl;
+char opcion;
+cin >> opcion;
+if (opcion == 's' || opcion == 'S')
+{
+    motor.encender();
+}
 
-    }
-    for (int i=0;i<carros.size();i++){
+cout << "Ingrese la velocidad deseada (rpm):  " <<endl;
+cin >> rpm;
+motor.ajustarVelocidad(rpm);
+motor.mostrarEstado();
 
-        cout<<"| MODELO: "<<carros[i].modelo<<" |"<<endl;
-        cout<<"| MARCA: "<<carros[i].marca<<" |"<<endl;
-        cout<<"| ANIO: "<<carros[i].anio<<" |"<<endl;
-        cout<<"| PRECIO: "<<carros[i].precio<<" |"<<endl;
-        cout<<"| COLOR: "<<carros[i].color<<" |"<<endl;
-        cout<<"| SIGUIENTE CARRO| "<<endl;
-        cout<<"        |||"<<endl;
-        cout<<"        |||"<<endl;
-        cout<<"        |||"<<endl;
-        cout<<"        |||"<<endl;;
-        cout<<"        ||"<<endl;
-    }
-    return 0;
+cout << "¿ Desea apagar el motor? (s/n):  " <<endl;
+cin >> opcion;
+if (opcion == 's' || opcion == 'S')
+{
+    motor.apagar();
+}
+motor.mostrarEstado();
+
+return 0;
+
 }
