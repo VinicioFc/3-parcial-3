@@ -1,0 +1,130 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+struct Pago {
+    int codigo;
+    string nombre;
+    string mes;
+    double valor;
+    string numeroCuenta;
+};
+
+vector<Pago> pagos;
+
+void agregarPago() {
+    Pago nuevoPago;
+    cout << "Ingrese codigo: ";
+    cin >> nuevoPago.codigo;
+    cin.ignore();
+    cout << "Ingrese nombre: ";
+    getline(cin, nuevoPago.nombre);
+    cout << "Ingrese mes: ";
+    getline(cin, nuevoPago.mes);
+    cout << "Ingrese valor del pago: ";
+    cin >> nuevoPago.valor;
+    cin.ignore();
+    cout << "Ingrese numero de cuenta: ";
+    getline(cin, nuevoPago.numeroCuenta);
+    
+    pagos.push_back(nuevoPago);
+    cout << "Pago registrado con exito!\n";
+}
+
+void mostrarPagos() {
+    for (const auto& pago : pagos) {
+        cout << "Codigo: " << pago.codigo << ", Nombre: " << pago.nombre
+             << ", Mes: " << pago.mes << ", Valor: " << pago.valor
+             << ", Cuenta: " << pago.numeroCuenta << endl;
+    }
+}
+
+void consultarPorMes() {
+    string mes;
+    cout << "Ingrese el mes a consultar: ";
+    cin.ignore();
+    getline(cin, mes);
+    
+    double total = 0;
+    for (const auto& pago : pagos) {
+        if (pago.mes == mes) {
+            total += pago.valor;
+        }
+    }
+    cout << "Total de pagos en " << mes << ": " << total << endl;
+}
+
+void consultarPorCodigo() {
+    int codigo;
+    cout << "Ingrese codigo de usuario: ";
+    cin >> codigo;
+    
+    for (const auto& pago : pagos) {
+        if (pago.codigo == codigo) {
+            cout << "Mes: " << pago.mes << ", Valor: " << pago.valor << endl;
+        }
+    }
+}
+
+void actualizarPago() {
+    int codigo;
+    cout << "Ingrese codigo del pago a actualizar: ";
+    cin >> codigo;
+    
+    for (auto& pago : pagos) {
+        if (pago.codigo == codigo) {
+            cin.ignore();
+            cout << "Nuevo nombre: ";
+            getline(cin, pago.nombre);
+            cout << "Nuevo mes: ";
+            getline(cin, pago.mes);
+            cout << "Nuevo valor: ";
+            cin >> pago.valor;
+            cin.ignore();
+            cout << "Nuevo numero de cuenta: ";
+            getline(cin, pago.numeroCuenta);
+            
+            cout << "Pago actualizado con exito!\n";
+            return;
+        }
+    }
+    cout << "Pago no encontrado.\n";
+}
+
+void eliminarPago() {
+    int codigo;
+    cout << "Ingrese codigo del pago a eliminar: ";
+    cin >> codigo;
+    
+    for (auto it = pagos.begin(); it != pagos.end(); ++it) {
+        if (it->codigo == codigo) {
+            pagos.erase(it);
+            cout << "Pago eliminado con exito!\n";
+            return;
+        }
+    }
+    cout << "Pago no encontrado.\n";
+}
+
+int main() {
+    int opcion;
+    do {
+        cout << "\nMenu:\n1. Registrar un pago\n2. Consultar pagos por mes\n3. Consultar pagos por codigo\n4. Listar todos los pagos\n5. Actualizar un pago\n6. Eliminar un pago\n7. Salir\nIngrese una opcion: ";
+        cin >> opcion;
+        
+        switch (opcion) {
+            case 1: agregarPago(); break;
+            case 2: consultarPorMes(); break;
+            case 3: consultarPorCodigo(); break;
+            case 4: mostrarPagos(); break;
+            case 5: actualizarPago(); break;
+            case 6: eliminarPago(); break;
+            case 7: cout << "Saliendo...\n"; break;
+            default: cout << "Opcion invalida.\n";
+        }
+    } while (opcion != 7);
+    
+    return 0;
+}
