@@ -1,88 +1,39 @@
 #include <iostream>
-#include <string>
-
+#include <fstream>
 using namespace std;
-
-class Motor {
-private:
-int potencia;
-int velocidad;
-string estado;
-const int MAX_VELOCIDAD = 5000;
-
-public:
-Motor(int p) : potencia(p), velocidad(0), estado("Apagado") {}
-
-void encender() {
-    estado = "Encendido";
-    cout << "Motor encendido " <<endl;
-}
-
-void apagar() {
-    estado = "Apagado";
-    velocidad = 0;
-    cout << "Motor apagado " <<endl;
-}
-
-void ajustarVelocidad(int rpm)
-{
-    if (estado == "Encendido")
-    {
-    if (rpm > MAX_VELOCIDAD)
-        {
-            velocidad = MAX_VELOCIDAD;
-            cout << "Velocidad limitada a " << MAX_VELOCIDAD << " rpm " <<endl;
-        }
-    else
-        {
-            velocidad = rpm;
-            cout << "Velocidad ajustada a " << velocidad << " rpm  " <<endl;
-        }
-    }
-    else {
-        cout << "No se puede ajustar la velocidad. El motor está apagado " <<endl;
-    }
-}
-
-void mostrarEstado()
-{
-    cout << "Estado: " << estado << ", Velocidad: " << velocidad << " rpm " <<endl;
-
-    cout << " --------------------------------------------------------- " <<endl;
-}
-
-};
 
 int main()
 {
-int potencia, rpm;
-cout << "Ingrese la potencia del motor:  " <<endl;
-cin >> potencia;
+    ofstream Archivo_ESCRITURA_Vinicio ("Dato_Vinicio.txt");
+        if (!Archivo_ESCRITURA_Vinicio)
+        {
 
-Motor motor(potencia);
-motor.mostrarEstado();
+        cout << " ERROR AL ABRIR EL ARCHIVO PARA ESCRIBIR " <<endl;
+        return 1;
 
-cout << "¿Desea encender el motor? (s/n): " <<endl;
-char opcion;
-cin >> opcion;
-if (opcion == 's' || opcion == 'S')
-{
-    motor.encender();
-}
+        }
 
-cout << "Ingrese la velocidad deseada (rpm):  " <<endl;
-cin >> rpm;
-motor.ajustarVelocidad(rpm);
-motor.mostrarEstado();
+        getlin(cin,Archivo_ESCRITURA_Vinicio)
 
-cout << "¿ Desea apagar el motor? (s/n):  " <<endl;
-cin >> opcion;
-if (opcion == 's' || opcion == 'S')
-{
-    motor.apagar();
-}
-motor.mostrarEstado();
+        //Archivo_ESCRITURA_Vinicio << " HOLA ESTO ES UN ARCHIVO DE TEXTO EN C++ "   << endl;
+        //Archivo_ESCRITURA_Vinicio << " SE PUEDEN ESCRIBIR VARIAS LINEAS AQUI C++ " << endl;
+        getlin(cin,Archivo_ESCRITURA_Vinicio)
+        Archivo_ESCRITURA_Vinicio.close();
 
-return 0;
+        ifstream Archivo_LECTURA_Vinicio ("Dato_Vinicio.txt");
+        if (!Archivo_LECTURA_Vinicio)
+        {
+        cout << "ERROR AL ABRIR EL ARCHIVO PARA LEER " << endl;
+        return 1;
+        }
+        string linea;
+        cout << " CONTENIDO DEL ARCHIVO " << endl;
+        while (getline (Archivo_LECTURA_Vinicio ,linea))
+        {
+        cout << " LINEA " <<endl;
+        }
+        Archivo_LECTURA_Vinicio.close();
+
+        return 0;
 
 }
